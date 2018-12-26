@@ -35,7 +35,7 @@ client.on('chat', function(channel, userstate, message, self){
 	if(u[0]){ // checking if someone is tagged
 		var name = u[0];
 
-		if(name === process.env.USERNAME){ // checking if SUSI is tagged
+		if(name === "teyd"){ // checking if SUSI is tagged
 
 			// Setting options to make a successful call to SUSI API
 			var options1 = {
@@ -83,7 +83,7 @@ client.on('chat', function(channel, userstate, message, self){
 });
 
 client.on('connected', function(address, port){
-	client.action(userChannel, `Hi, I'm teyd. Mention me using " ${process.env.USERNAME} " to chat with me.`);
+	client.action(userChannel, `Hi, I'm teyd. Mention me using "teyd" to chat with me.`);
 });
 
 const port = process.env.PORT || 3000;
