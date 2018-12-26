@@ -31,11 +31,11 @@ var client = new tmi.client(options);
 client.connect();
 
 client.on('chat', function(channel, userstate, message, self){
-	var u = message.split('teyd');
-	if(u[0]){ // checking if someone is tagged
-		var name = u[0];
+	var u = message.split('@');
+	if(u[1]){ // checking if someone is tagged
+		var name = u[1].substring(0, (process.env.USERNAME).length);
 
-		if(name === "teyd"){ // checking if SUSI is tagged
+		if(name === process.env.USERNAME){ // checking if SUSI is tagged
 
 			// Setting options to make a successful call to SUSI API
 			var options1 = {
@@ -44,7 +44,7 @@ client.on('chat', function(channel, userstate, message, self){
 				qs:
 				{
 					timezoneOffset: '-300',
-					q: u[0].substring(("teyd").length + 1, u[0].length)
+					q: u[1].substring((process.env.USERNAME).length + 1, u[1].length)
 				}
 			};
 
@@ -83,7 +83,7 @@ client.on('chat', function(channel, userstate, message, self){
 });
 
 client.on('connected', function(address, port){
-	client.action(userChannel, `Hi, I'm teyd. Mention me using "teyd" to chat with me.`);
+	client.action(userChannel, `Hi, I'm SUSI. Mention me using @${process.env.USERNAME} to chat with me.`);
 });
 
 const port = process.env.PORT || 3000;
