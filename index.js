@@ -31,11 +31,11 @@ var client = new tmi.client(options);
 client.connect();
 
 client.on('chat', function(channel, userstate, message, self){
-	var u = message.split(' ');
-	if(u[0]){ // checking if someone is tagged
-		var name = u[0];
+	//var u = message.split('teyd');
+	//if(u[0]){ // checking if someone is tagged
+		//var name = u[0];
 
-		if(name === "teyd"){ // checking if SUSI is tagged
+		if(message.startsWith('teyd')){ // checking if SUSI is tagged
 
 			// Setting options to make a successful call to SUSI API
 			var options1 = {
@@ -44,7 +44,7 @@ client.on('chat', function(channel, userstate, message, self){
 				qs:
 				{
 					timezoneOffset: '-300',
-					q: u[1].length
+					q: 4 , message
 				}
 			};
 
