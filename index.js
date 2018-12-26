@@ -5,7 +5,6 @@ var http = require('http');
 
 const app = express();
 const userChannel = process.env.CHANNEL;
-const splitAt = index => x => [x.slice(0, index), x.slice(index)]
 
 setInterval(function() {
 		http.get(process.env.HEROKU_URL);
@@ -32,11 +31,12 @@ var client = new tmi.client(options);
 client.connect();
 
 client.on('chat', function(channel, userstate, message, self){
-	var u = message.splitAt(4)
-	if(u[0]){ // checking if someone is tagged
-		var name = u[0];
+	var messsage = "@" + message;
+	var u = message.split('@');
+	if(u[1]){ // checking if someone is tagged
+		var name = u[1].substring(0, (process.env.USERNAME).length);
 
-		if(name === "teyd"){ // checking if SUSI is tagged
+		if(name === process.env.USERNAME){ // checking if SUSI is tagged
 
 			// Setting options to make a successful call to SUSI API
 			var options1 = {
@@ -45,7 +45,7 @@ client.on('chat', function(channel, userstate, message, self){
 				qs:
 				{
 					timezoneOffset: '-300',
-					q: u[0].substring((name).length + 1, u[1].length)
+					q: u[1].substring((process.env.USERNAME).length + 1, u[1].length)
 				}
 			};
 
