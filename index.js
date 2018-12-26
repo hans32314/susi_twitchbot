@@ -85,7 +85,7 @@ client.on('chat', function(channel, userstate, message, self){
 });
 
 client.on('connected', function(address, port){
-	client.action(userChannel, `Hi, I'm teyd. Mention me using @${process.env.USERNAME} to chat with me.`);
+	client.action(userChannel, `Hi, I'm teyd. Mention me using "teyd" (at the beginning) to chat with me.`);
 });
 
 const port = process.env.PORT || 3000;
