@@ -35,7 +35,7 @@ client.on('chat', function(channel, userstate, message, self){
 	var messagesplitter = at + message;
 	var u = messagesplitter.split('@');
 	if(u[1]){ // checking if someone is tagged
-		var name = u[1].substring(0, 4);
+		var name = u[1].substring(0, 4).toLowerCase();
 
 		if(name === "teyd"){ // checking if SUSI is tagged
 
