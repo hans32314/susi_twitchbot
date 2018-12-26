@@ -31,9 +31,9 @@ var client = new tmi.client(options);
 client.connect();
 
 client.on('chat', function(channel, userstate, message, self){
-	var u = message.split('teyd');
+	var u = message.split(' ');
 	if(u[0]){ // checking if someone is tagged
-		var name = u[0];
+		var name = u[0].substring(0, 4);
 
 		if(name === "teyd"){ // checking if SUSI is tagged
 
@@ -44,7 +44,7 @@ client.on('chat', function(channel, userstate, message, self){
 				qs:
 				{
 					timezoneOffset: '-300',
-					q: name.length + 1, u[1].length)
+					q: u[0].substring((name).length + 1, u[0].length)
 				}
 			};
 
