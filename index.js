@@ -31,9 +31,9 @@ var client = new tmi.client(options);
 client.connect();
 
 client.on('chat', function(channel, userstate, message, self){
-	var u = message.split('@');
-	if(u[1]){ // checking if someone is tagged
-		var name = u[1].substring(0, (process.env.USERNAME).length);
+	var u = message.split('teyd');
+	if(u[0]){ // checking if someone is tagged
+		var name = u[0];
 
 		if(name === process.env.USERNAME){ // checking if SUSI is tagged
 
