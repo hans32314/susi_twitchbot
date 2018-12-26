@@ -44,7 +44,7 @@ client.on('chat', function(channel, userstate, message, self){
 				qs:
 				{
 					timezoneOffset: '-300',
-					q: u[0].length + 1, u[1].length)
+					q: name.length + 1, u[1].length)
 				}
 			};
 
